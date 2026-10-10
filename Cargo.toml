@@ -1,0 +1,18 @@
+[package]
+name = "card_game"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+bevy = "0.20"
+rand = "0.9"
+serde = { version = "1.0.229", features = ["derive"] }
+serde_json = "1.0.152"
+
+# Bevy is slow in unoptimized builds. Optimize dependencies fully and our own
+# code a little, so debug builds stay fast to compile but run smoothly.
+[profile.dev]
+opt-level = 1
+
+[profile.dev.package."*"]
+opt-level = 3
